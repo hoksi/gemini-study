@@ -37,3 +37,20 @@
 
 *   `vscode.md`: VS Code와 Gemini CLI 통합 문제 해결 방법
 *   `github.md`: 학습 내용 GitHub 저장 및 SSH 인증 설정 방법
+
+---
+
+## 블로그 생성 프로젝트
+
+### 진행 상황
+
+*   **블로그 생성 계획 수립**: `blog_plan.md` 파일을 통해 GitHub Pages와 Jekyll을 이용한 블로그 생성 계획을 수립했습니다.
+*   **Jekyll 환경 설정**: Homebrew, `rbenv`, Ruby, Bundler, Jekyll 설치를 완료했습니다.
+*   **새 Jekyll 블로그 생성**: `jekyll new gemini-dev-log` 명령어를 사용하여 `gemini-dev-log` 블로그 프로젝트를 생성했습니다.
+*   **로컬 테스트**: 생성된 블로그가 로컬에서 정상적으로 작동함을 확인했습니다.
+*   **GitHub Pages 배포 시도**: `hoksi.github.io` 저장소에 `gemini-dev-log` 내용을 배포하려 시도했으나, GitHub 인증 문제로 인해 현재 보류 중입니다.
+
+### 앞으로 진행해야 할 일
+
+*   **GitHub Pages 배포 완료**: `hoksi.github.io` 저장소에 `gemini-dev-log` 블로그를 성공적으로 배포합니다. (GitHub 인증 문제 해결 필요)
+*   **첫 게시물 작성 및 배포**: 블로그에 첫 게시물을 작성하고 배포합니다.
