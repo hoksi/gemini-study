@@ -69,3 +69,55 @@ git commit -m "학습 내용 추가: (여기에 변경 내용 요약)"
 # 3. 원격 저장소에 푸시
 git push
 ```
+
+---
+
+### SSH를 이용한 인증 오류 해결
+
+GitHub에 푸시할 때 인증 오류가 발생한다면, 이는 대부분 HTTPS 방식의 인증 문제 때문입니다. SSH 키를 사용하여 인증하는 방식으로 전환하면 이 문제를 해결할 수 있습니다.
+
+**1. 현재 원격 저장소 URL 확인**
+
+먼저 현재 설정된 원격 저장소의 URL을 확인합니다. 일반적으로 원격 저장소의 이름은 `origin`입니다.
+
+```bash
+git remote -v
+```
+
+출력 예시:
+```
+origin  https://github.com/USER/REPO.git (fetch)
+origin  https://github.com/USER/REPO.git (push)
+```
+
+**2. 원격 저장소 URL을 SSH로 변경**
+
+위에서 확인한 원격 저장소의 이름을 사용하여 URL을 SSH 주소로 변경합니다. `USER`와 `REPO`를 자신의 GitHub 사용자 이름과 저장소 이름으로 변경해야 합니다.
+
+```bash
+git remote set-url origin git@github.com:USER/REPO.git
+```
+
+**3. 변경된 URL 확인**
+
+마지막으로, 다음 명령어를 다시 실행하여 원격 저장소의 URL이 SSH 주소로 성공적으로 변경되었는지 확인합니다.
+
+```bash
+git remote -v
+```
+
+이제 출력 결과는 다음과 같아야 합니다.
+```
+origin  git@github.com:USER/REPO.git (fetch)
+origin  git@github.com:USER/REPO.git (push)
+```
+
+**4. SSH 키 생성 및 GitHub에 등록**
+
+만약 SSH 키가 없거나 GitHub에 등록되어 있지 않다면, 다음 단계를 추가로 진행해야 합니다.
+
+*   **SSH 키 생성**: 터미널에서 `ssh-keygen -t ed25519 -C "your_email@example.com"` 명령어를 사용하여 새로운 SSH 키를 생성합니다. (자세한 내용은 GitHub 공식 문서를 참고하세요.)
+*   **SSH 에이전트에 키 추가**: `ssh-add ~/.ssh/id_ed25519` 명령어를 사용하여 생성된 키를 SSH 에이전트에 추가합니다.
+*   **GitHub 계정에 SSH 키 등록**: 생성된 공개 키(`~/.ssh/id_ed25519.pub` 파일 내용)를 복사하여 GitHub 계정 설정의 SSH 및 GPG 키 섹션에 추가합니다.
+
+이 과정을 통해 Git 저장소의 원격 연결 방식이 HTTPS에서 SSH로 성공적으로 전환됩니다. 이제 `git push` 명령어를 사용할 때 비밀번호를 입력할 필요 없이 SSH 키를 통해 인증이 이루어집니다.
